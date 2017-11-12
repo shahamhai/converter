@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Hello from './hello.js';
-import Input from './input.js';
+import ConversionForm from './conversionForm.js';
+import Result from './result.js'
 
 class App extends Component {
   render() {
@@ -11,14 +11,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Currency Converter</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-          some text
-        </p>
-        <Hello></Hello>
-        <Input></Input>
+        <ConversionForm />
+        <Result />
       </div>
     );
   }
