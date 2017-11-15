@@ -6,9 +6,9 @@ export default class Amount extends Component {
   }
 
   render(){
-    return <div>
-      amount of money to convert: <br/>
-      <input type="number" inputmode="numerinc"/>
+    return <div className="row">
+      <div>amount of money to convert:</div>
+      <input type="number" inputMode="numerinc"/>
     </div> ;
   }
 }

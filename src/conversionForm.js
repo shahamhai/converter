@@ -10,9 +10,15 @@ export default class ConversionForm extends Component {
 
   render(){
     return <form>
-      <Currency key="input" title="from" />
-      <Currency key="output" title="to" />
-      <Amount />
+      <div className="input-group">
+        <div className="col-sm-6 col-lg-3 offset-lg-3 alert alert-secondary">
+          <Currency key="input" title="from" />
+          <Amount />
+        </div>
+        <div className="col-sm-6 col-lg-3 alert alert-secondary">
+          <Currency key="output" title="to" />
+        </div>
+      </div>
     </form> ;
   }
 }
