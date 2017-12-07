@@ -4,5 +4,14 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { Provider } from 'mobx-react';
+import ConverterStore from './Stores/ConverterStore.js';
+
+const Root = (
+  <Provider ConverterStore={ConverterStore}>
+    <App />
+  </Provider>
+);
+
+ReactDOM.render(Root, document.getElementById('root'));
 registerServiceWorker();
