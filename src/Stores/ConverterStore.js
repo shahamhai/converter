@@ -2,8 +2,8 @@ import {observable, action, computed} from 'mobx';
 import axios from 'axios';
 
 class ConverterStore {
-  @observable currencies = [];
-  @observable amount = 0;
+  @observable currencies = [{name: 'EUR', rate: 1}];
+  @observable amount = 1;
   @observable srcCurrency = 0;
   @observable destCurrency = 0;
 
@@ -26,14 +26,28 @@ class ConverterStore {
         this.currencies = currencies;
       }).catch(err => {console.log(err)});
   }
-  @action changeSrc = index =>{
+  @action setAmount = newVal => {
+    this.amount = newVal;
+  }
+  @action setSrc = index =>{
     this.srcCurrency = index;
   }
-  @action changeDest = index => {
+  @action setDest = index => {
     this.destCurrency = index;
   }
+  @computed get destCurr() {
+    let result= this.currencies[this.destCurrency].name;
+    return result
+  }
   @computed get convertedValue() {
-    return this.amount*this.currencies[this.destCurrency].rate/this.currencies[this.srcCurrency].rate;
+    let result;
+    try {
+      result = this.amount*this.currencies[this.destCurrency].rate / this.currencies[this.srcCurrency].rate;
+    } catch (e) {
+      console.log(e);
+      result = 0;
+    }
+    return result;
   }
 
 }

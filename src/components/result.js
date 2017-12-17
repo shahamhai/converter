@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import {inject, observer} from 'mobx-react';
 
+@inject('ConverterStore') @observer
 export default class result extends Component {
-  constructor(props) {
-    super(props);
 
-  }
 
   render(){
-    return <div>
-      5 USD
-    </div> ;
+    const {ConverterStore} = this.props;
+    return (
+      <div>
+      {ConverterStore.convertedValue} {ConverterStore.destCurr}
+    </div>
+  );
   }
 }

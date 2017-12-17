@@ -5,21 +5,32 @@ import {inject, observer} from 'mobx-react';
 export default class Currency extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''}
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event){
-    this.setState({value: event.target.value});
+    const {ConverterStore} = this.props;
+    const {title} = this.props;
+    switch (title) {
+      case 'from':
+        ConverterStore.setSrc(event.target.value);
+        break;
+      case 'to':
+        ConverterStore.setDest(event.target.value);
+        break;
+      default:
+
+    }
   }
 
   render(){
-    const currencyOptions = this.props.ConverterStore.currencies.map(currency => <option value={currency.name}>{currency.name}</option>);
+    const {ConverterStore} = this.props;
+    const currencyOptions = ConverterStore.currencies.map((currency, index) => <option value={index} key={currency.name}>{currency.name}</option>);
     return (
       <div className="">
-        <div className = "row" > title </div>
+        <div className = "row" > {this.props.title} </div>
         <div className="row">
-          <select>
+          <select onChange={this.handleChange}>
             {currencyOptions}
           </select>
         </div>
